@@ -11,7 +11,7 @@
 
 text_responses = {
   "LaunchRequest" : {
-                    "speech" : "Booyakasha, you can learn a word of the day or a random word.",
+                    "speech" : '<amazon:emotion name="excited" intensity="high">Booyakasha, you can learn a word of the day or a random word.</amazon:emotion>',
                     "repromt" : "For real, wanna learn some slang from the streets?"
                     },
   "AMAZON.HelpIntent" : {
@@ -27,7 +27,7 @@ text_responses = {
                     "repromt" : ""
                     },
     "RandomWordIntent" : {
-                    "speech" : "{}. Its meanining is: {}. Example: {}",
+                    "speech" : "{}. Here is the meaning: {}. <break time='3s'/>  Example: {}",
                     "repromt" : "Which city again?"
                     },
   "WordOfTheDayIntent" : {
