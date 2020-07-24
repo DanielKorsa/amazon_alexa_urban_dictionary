@@ -11,7 +11,7 @@
 
 text_responses = {
   "LaunchRequest" : {
-                    "speech" : '<amazon:emotion name="excited" intensity="high">Booyakasha, you can learn a word of the day or a random word.</amazon:emotion>',
+                    "speech" : 'Booyakasha, you can learn a word of the day or a random word.',
                     "repromt" : "For real, wanna learn some slang from the streets?"
                     },
   "AMAZON.HelpIntent" : {
@@ -27,7 +27,7 @@ text_responses = {
                     "repromt" : ""
                     },
     "RandomWordIntent" : {
-                    "speech" : "{}. Here is the meaning: {}. <break time='3s'/>  Example: {}",
+                    "speech" : "{}. Here is the meaning: {}. <break time='1s'/>  Example: {}",
                     "repromt" : "Which city again?"
                     },
   "WordOfTheDayIntent" : {
@@ -46,10 +46,11 @@ text_responses = {
 } 
 
 
-def msg(intent_name, response_kind):
+
+def msg(intent_name, response_kind, emotion = 'excited', intensity = 'high'):
 
     if intent_name in text_responses:
-        return text_responses[intent_name]['speech']
+        return '<amazon:emotion name=' + emotion + ' intensity=' + intensity + '>' + text_responses[intent_name]['speech'] + '</amazon:emotion>'
     else:
         return "No message available for this intent"
 
@@ -60,3 +61,5 @@ def msg(intent_name, response_kind):
 
     
 #     def repromt_msg(self, intent_name):
+
+#print(msg('RandomWordIntent', 'speech', 'excited', 'high'))
