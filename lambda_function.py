@@ -37,7 +37,7 @@ skill_name = "urban slang"
 # date_slot_key = "DATE"
 # show_n_slot_key = "SHOW NUMBER"
 # shows_list_key = "SHOWS LIST"
-# help_text = "ADD IT to file"
+help_text = "ADD IT to file"
 
 #-------------------------------
 
