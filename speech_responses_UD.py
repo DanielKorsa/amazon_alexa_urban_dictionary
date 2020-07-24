@@ -50,7 +50,7 @@ text_responses = {
 def msg(intent_name, response_kind, emotion = "excited", intensity = "high"):
 
     if intent_name in text_responses:
-        return '<amazon:emotion name=' + emotion + ' intensity=' + intensity + '>' + text_responses[intent_name]['speech'] + '</amazon:emotion>'
+        
         return '<amazon:emotion name={} intensity={}>{}</amazon:emotion>"'.format(emotion, intensity,text_responses[intent_name]['speech'])
     else:
         return "No message available for this intent"
@@ -63,5 +63,5 @@ def msg(intent_name, response_kind, emotion = "excited", intensity = "high"):
     
 #     def repromt_msg(self, intent_name):
 
-print(msg('LaunchRequest', 'speech'))
+#print(msg('LaunchRequest', 'speech'))
 
