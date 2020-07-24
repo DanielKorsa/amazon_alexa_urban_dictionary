@@ -12,35 +12,35 @@
 text_responses = {
   "LaunchRequest" : {
                     "speech" : 'Booyakasha, you can learn a word of the day or a random word.',
-                    "repromt" : "For real, wanna learn some slang from the streets?"
+                    "repromt" : 'For real, wanna learn some slang from the streets?'
                     },
   "AMAZON.HelpIntent" : {
-                    "speech" : "You can choose between a word of the day, or a random word",
-                    "repromt" : "For example, say random word, and you will get its meaning and an example"
+                    "speech" : 'You can choose between a word of the day, or a random word',
+                    "repromt" : 'For example, say random word, and you will get its meaning and an example'
                     },
   "AMAZON.StopIntent" : {
-                    "speech" : "Bye, keep it real",
-                    "repromt" : ""
+                    "speech" : 'Bye, keep it real',
+                    "repromt" : ''
                     },
   "AMAZON.CancelIntent" : {
-                    "speech" : "Respek, knowledge is power",
-                    "repromt" : ""
+                    "speech" : 'Respek, knowledge is power',
+                    "repromt" : ''
                     },
     "RandomWordIntent" : {
-                    "speech" : "{}. Here is the meaning: {}. <break time='1s'/>  Example: {}",
-                    "repromt" : "Which city again?"
+                    "speech" : '{}. Here is the meaning: {}. <break time="1s"/>  Example: {}',
+                    "repromt" : 'Which city again?'
                     },
   "WordOfTheDayIntent" : {
-                    "speech" : " add later",
-                    "repromt" : "Which date again?"
+                    "speech" : ' add later',
+                    "repromt" : 'Which date again?'
                     },
   "TEMPLATE" : {
-                    "speech" : "",
-                    "repromt" : ""
+                    "speech" : '',
+                    "repromt" : ''
                     },
   "AMAZON.FallbackIntent" : {
-                    "speech" : "For real, just ask for a random word",
-                    "repromt" : "Wicked, want another word?"
+                    "speech" : 'For real, just ask for a random word',
+                    "repromt" : 'Wicked, want another word?'
                     }
 
 } 
@@ -63,5 +63,6 @@ def msg(intent_name, response_kind, emotion = "excited", intensity = "high"):
     
 #     def repromt_msg(self, intent_name):
 
-print(msg('LaunchRequest', 'speech'))
+#print(msg('LaunchRequest', 'speech'))
 
+#'<amazon:emotion name="excited" intensity="high">Booyakasha, you can learn a word of the day or a random word.</amazon:emotion>'
