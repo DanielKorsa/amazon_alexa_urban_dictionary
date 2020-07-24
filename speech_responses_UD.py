@@ -11,36 +11,36 @@
 
 text_responses = {
   "LaunchRequest" : {
-                    "speech" : "In which city do you wanna party?",
-                    "repromt" : "2004"
+                    "speech" : "Booyakasha, you can learn a word of the day or a random word.",
+                    "repromt" : "For real, wanna learn some slang from the streets?"
                     },
   "AMAZON.HelpIntent" : {
-                    "speech" : "With this skill you can find raves by selecting a city and a date.",
-                    "repromt" : "Just choose a city and a date and we will find an event for you"
+                    "speech" : "You can choose between a word of the day, or a random word",
+                    "repromt" : "For example, say random word, and you will get its meaning and an example"
                     },
   "AMAZON.StopIntent" : {
-                    "speech" : "Bye, have a nice rave!",
+                    "speech" : "Bye, keep it real",
                     "repromt" : ""
                     },
   "AMAZON.CancelIntent" : {
-                    "speech" : "Bye, have a nice rave!",
+                    "speech" : "Respek, knowledge is power",
                     "repromt" : ""
                     },
-    "MyCityIntent" : {
+    "RandomWordIntent" : {
                     "speech" : "Your city is {}. Now tell me the date!",
                     "repromt" : "Which city again?"
                     },
-  "MyDateIntent" : {
+  "WordOfTheDayIntent" : {
                     "speech" : " add later",
                     "repromt" : "Which date again?"
                     },
-  "PickShowIntent" : {
-                    "speech" : "The lineup is {}. There are already {} attendants {} and the price is 10 Euro",
-                    "repromt" : "On which event do you want to know more info?"
+  "TEMPLATE" : {
+                    "speech" : "",
+                    "repromt" : ""
                     },
   "AMAZON.FallbackIntent" : {
-                    "speech" : "I can not help you with that, tell me the city and the date",
-                    "repromt" : "You can tell me city and date"
+                    "speech" : "For real, just ask for a random word",
+                    "repromt" : "Wicked, want another word?"
                     }
 
 } 
@@ -52,7 +52,6 @@ def msg(intent_name, response_kind):
         return text_responses[intent_name]['speech']
     else:
         return "No message available for this intent"
-
 
 
 # class AlexaSpeechResposne:

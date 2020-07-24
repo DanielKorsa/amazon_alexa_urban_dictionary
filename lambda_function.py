@@ -1,23 +1,22 @@
 # coding=utf-8
 
 # Alexa - Urban Dictionary
-# By Danil Konovalov <gesundmeister@gmail.com>
+# By Daniel Ko <gesundmeister@gmail.com>
 # Alexa skill to interract with Urban Dictionary
 
 
 # ------------------My Imports
 import json
-import requests
-from bs4 import BeautifulSoup
-from ud_scraper import main
+#import requests
+#from bs4 import BeautifulSoup
+from ud_scraper import word_of_the_day, random_word
 from speech_responses_UD import msg
 
 # -------------------Debugging
 from datetime import datetime
-
+ 
 # --------------------Imports from aws
 import logging
-
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.utils import (
     is_request_type, is_intent_name, get_slot_value, request_util, 
@@ -28,28 +27,27 @@ from ask_sdk_model.ui import SimpleCard # Can delete
 from ask_sdk_model import Response, DialogState
 from ask_sdk_model.dialog import ElicitSlotDirective # For adding directives
 
-# --------------------------------------
 #---------------- My variables---------
-city_slot = "city"
-date_slot = "date"
-show_n_slot = "show_number"
-# Slot attribute keys
-city_slot_key = "CITY"
-date_slot_key = "DATE"
-show_n_slot_key = "SHOW NUMBER"
-shows_list_key = "SHOWS LIST"
-help_text = "ADD IT to file"
-skill_name = "resident advisor"
+skill_name = "urban slang"
+# city_slot = "city"
+# date_slot = "date"
+# show_n_slot = "show_number"
+# # Slot attribute keys
+# city_slot_key = "CITY"
+# date_slot_key = "DATE"
+# show_n_slot_key = "SHOW NUMBER"
+# shows_list_key = "SHOWS LIST"
+# help_text = "ADD IT to file"
+
 #-------------------------------
 
 sb = SkillBuilder()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-#handler_input.response_builder.set_should_end_session(False)
-#session_attr = handler_input.attributes_manager.session_attributes
+
 def intnt_name(handler_input):
-    """ Return str
+    """
     Returns name of request or intent
     """
     req_type = get_request_type(handler_input)
@@ -103,90 +101,42 @@ def session_ended_request_handler(handler_input):
     return handler_input.response_builder.response
 
 
-    #---- Choose City Slot-------------------------------------------
 
-@sb.request_handler(can_handle_func=is_intent_name("MyCityIntent"))
+@sb.request_handler(can_handle_func=is_intent_name("WordOfTheDayIntent"))
 def my_city_handler(handler_input):
 
     # type: (HandlerInput) -> Response
     intent_name = intnt_name(handler_input)
     session_attr = handler_input.attributes_manager.session_attributes
     dialogue_state = get_dialog_state(handler_input)
-    print('FUUUUCK' + str(dialogue_state))
-
-    current_city = get_slot_value(handler_input, city_slot)
-    session_attr[city_slot_key] = current_city # save city in current sesh
+    print('FUUUUCK its test' + str(dialogue_state))
     
-    speech = msg(intent_name,'speech').format(current_city)
+    word = word_of_the_day()
+    speech = word['word'] + word['meaning'] + word['example']
+
+    # speech = msg(intent_name,'speech').format(current_city)
     reprompt = msg(intent_name,'reprompt')
 
-    # speech = "I'm not sure what your favorite city is, please try again"
-    # reprompt = ("I'm not sure what your party city is. ")
 
     handler_input.response_builder.speak(speech).ask(reprompt)
     return handler_input.response_builder.response
 
-    #---- Choose DATE Slot-------------------------------------------
 
-@sb.request_handler(can_handle_func=is_intent_name("MyDateIntent"))
+@sb.request_handler(can_handle_func=is_intent_name("RandomWordIntent"))
 def my_date_handler(handler_input):
 
     # type: (HandlerInput) -> Response
     intent_name = intnt_name(handler_input)
     session_attr = handler_input.attributes_manager.session_attributes
 
-    current_date = get_slot_value(handler_input, date_slot)
-    session_attr[date_slot_key] = current_date # save date in current sesh
     
-    if city_slot_key in session_attr:
-        current_city = session_attr[city_slot_key] # Get city name from attributes
-    else:
-        print("ERROR: CITY WAS NOT SAVED BEFORE")
-
-
-    shows, shows_msg = main(current_date, current_city) # Get list of shows 
-    session_attr[shows_list_key] = shows # save list of shows in Session Attributes
-    
-    speech = (shows_msg)
+    word = random_word()
+    speech = word['word'] + word['meaning'] + word['example']
     reprompt = msg(intent_name,'reprompt')
-    # speech = "I'm not sure when you want to party, please try again."
-    # reprompt = ("When do you want to party? ")
 
     handler_input.response_builder.speak(speech).ask(reprompt)
     return handler_input.response_builder.response
 
-    #---- Choose SHOW Slot-------------------------------------------
-
-@sb.request_handler(can_handle_func=is_intent_name("PickShowIntent"))
-def pcik_shows_handler(handler_input):
-
-    # type: (HandlerInput) -> Response
-    intent_name = intnt_name(handler_input)
-    session_attr = handler_input.attributes_manager.session_attributes
-    
-    show_n = int(get_slot_value(handler_input, show_n_slot)) # get show number
-    #print("SHOW NUMBER type is {}".format(type(show_n)))
-
-    if shows_list_key in session_attr:
-        shows_list = session_attr[shows_list_key]
-        picked_show = shows_list[show_n -1] # User will say First and list is 0 based
-    else:
-        picked_show = 'NO SHOWS SAVED IN ATTRIBUTES'
-    
-
-    speech = msg(intent_name,'speech').format(picked_show['lineup'],picked_show['attending'],picked_show['venue'])
-    reprompt = msg(intent_name,'reprompt')
-    print(speech)
-    # directive=ElicitSlotDirective(
-    #     updated_intent=Intent(
-    #         name="FavoriteColorIntent"), 
-    #     slot_to_elicit="favoriteColor"))
-
-
-    handler_input.response_builder.speak(speech).ask(reprompt)#.add_directive(directive)
-    return handler_input.response_builder.response
-
-    #---- Choose SHOW Slot---------------------------------------------
 
 
 @sb.request_handler(can_handle_func=is_intent_name("AMAZON.FallbackIntent"))
@@ -199,7 +149,7 @@ def fallback_handler(handler_input):
     intent_name = intnt_name(handler_input)
     session_attr = handler_input.attributes_manager.session_attributes
 
-    speech = (shows_msg)
+    speech = ('ADD SPEACH HERE')
     reprompt = msg(intent_name,'reprompt')
 
     handler_input.response_builder.speak(speech).ask(reprompt)
@@ -285,17 +235,3 @@ class SSMLStripper(HTMLParser):
 handler = sb.lambda_handler() # Thats from Hello world example
 
 
-
-
-# def get_intent_name(handler_input):
-#     return ask_sdk_core.utils.request_util.get_intent_name(handler_input)
-
-
-# def my_func(handler_input):
-# 	# type: (HandlerInput) -> bool
-# 	return (is_intent_name("PetMatchIntent")(handler_input) 
-# 		and handler_input.request_envelope.request.dialog_state != DialogState.COMPLETED)
- 
-# @sb.request_handler(can_handle_func=my_func)
-# def my_intent_handler(handler_input):
-# 	# Do your normal intent processing here

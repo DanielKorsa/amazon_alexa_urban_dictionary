@@ -6,7 +6,7 @@ env:
 phases:
   install:
     runtime-versions:
-      python: 3.7 # for this project ver
+      python: 3.7 # for this project ver a
     commands:
       - apt-get update
       - apt-get install zip
