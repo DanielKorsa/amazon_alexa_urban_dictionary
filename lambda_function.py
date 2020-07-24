@@ -131,7 +131,8 @@ def my_date_handler(handler_input):
 
     
     word = random_word()
-    speech = word['word'] + word['meaning'] + word['example']
+    #speech = word['word'] + word['meaning'] + word['example']
+    speech = msg(intent_name,'speech').format(word['word'], word['meaning'], word['example'])
     reprompt = msg(intent_name,'reprompt')
 
     handler_input.response_builder.speak(speech).ask(reprompt)

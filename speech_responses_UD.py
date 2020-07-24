@@ -27,7 +27,7 @@ text_responses = {
                     "repromt" : ""
                     },
     "RandomWordIntent" : {
-                    "speech" : "Your city is {}. Now tell me the date!",
+                    "speech" : "{}. Its meanining is: {}. Example: {}",
                     "repromt" : "Which city again?"
                     },
   "WordOfTheDayIntent" : {
