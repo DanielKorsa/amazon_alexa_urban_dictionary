@@ -63,5 +63,5 @@ def msg(intent_name, response_kind, emotion = "excited", intensity = "high"):
     
 #     def repromt_msg(self, intent_name):
 
-#print(msg('LaunchRequest', 'speech'))
+print(msg('LaunchRequest', 'speech'))
 
