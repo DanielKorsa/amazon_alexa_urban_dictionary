@@ -72,8 +72,9 @@ def help_intent_handler(handler_input):
     # type: (HandlerInput) -> Response
     intent_name = intnt_name(handler_input)
     speech = msg(intent_name,'speech')
+    reprompt = msg(intent_name,'reprompt')
 
-    handler_input.response_builder.speak(speech).ask(speech)
+    handler_input.response_builder.speak(speech).ask(reprompt)
     return handler_input.response_builder.response
     
 
@@ -109,11 +110,8 @@ def my_city_handler(handler_input):
     print('FUUUUCK its test' + str(dialogue_state))
     
     word = word_of_the_day()
-    speech = word['word'] + word['meaning'] + word['example']
-
-    # speech = msg(intent_name,'speech').format(current_city)
+    speech = msg(intent_name,'speech').format(word['word'], word['meaning'], word['example'])
     reprompt = msg(intent_name,'reprompt')
-
 
     handler_input.response_builder.speak(speech).ask(reprompt)
     return handler_input.response_builder.response
@@ -126,9 +124,7 @@ def my_date_handler(handler_input):
     intent_name = intnt_name(handler_input)
     session_attr = handler_input.attributes_manager.session_attributes
 
-    
     word = random_word()
-    #speech = word['word'] + word['meaning'] + word['example']
     speech = msg(intent_name,'speech').format(word['word'], word['meaning'], word['example'])
     reprompt = msg(intent_name,'reprompt')
 
@@ -147,7 +143,7 @@ def fallback_handler(handler_input):
     intent_name = intnt_name(handler_input)
     session_attr = handler_input.attributes_manager.session_attributes
 
-    speech = ('ADD SPEACH HERE')
+    speech = msg(intent_name,'speech')
     reprompt = msg(intent_name,'reprompt')
 
     handler_input.response_builder.speak(speech).ask(reprompt)
@@ -193,8 +189,8 @@ def all_exception_handler(handler_input, exception):
     # type: (HandlerInput, Exception) -> None
     print("Encountered following exception: {}".format(exception))
 
-    speech = "Sorry, there was some problem. Lets try again!!"
-    handler_input.response_builder.speak(speech).ask(speech)
+    speech = "Sorry, there was a fatal error."
+    handler_input.response_builder.speak(speech).ask(reprompt)
 
     return handler_input.response_builder.response
 
