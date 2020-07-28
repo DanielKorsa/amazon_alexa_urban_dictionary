@@ -30,16 +30,12 @@ from ask_sdk_model.dialog import ElicitSlotDirective # For adding directives
 #---------------- My variables---------
 skill_name = "urban slang"
 # city_slot = "city"
-# date_slot = "date"
-# show_n_slot = "show_number"
-# # Slot attribute keys
 # city_slot_key = "CITY"
-# date_slot_key = "DATE"
 # show_n_slot_key = "SHOW NUMBER"
-# shows_list_key = "SHOWS LIST"
-help_text = "ADD IT to file"
 
-#------------------------------- Add a question - Did you like this word? to rate them 
+#TODO:
+# Add word ratings 1 - 0
+# Add ask a word meaning
 
 sb = SkillBuilder()
 logger = logging.getLogger(__name__)
@@ -64,9 +60,10 @@ def launch_request_handler(handler_input):
     # type: (HandlerInput) -> Response
     intent_name = intnt_name(handler_input)
     speech = msg(intent_name,'speech')
+    reprompt = msg(intent_name,'reprompt')
 
-    #handler_input.response_builder.speak(speech).ask(help_text)
-    return handler_input.response_builder.response.ask(help_text)
+    handler_input.response_builder.speak(speech).ask(reprompt)
+    return handler_input.response_builder.response
 
 
 @sb.request_handler(can_handle_func=is_intent_name("AMAZON.HelpIntent"))

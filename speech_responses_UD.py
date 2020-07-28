@@ -12,35 +12,35 @@
 text_responses = {
   "LaunchRequest" : {
                     "speech" : 'Booyakasha, you can learn a word of the day or a random word.',
-                    "repromt" : 'For real, wanna learn some slang from the streets?'
+                    "reprompt" : 'For real, wanna learn some slang from the streets?'
                     },
   "AMAZON.HelpIntent" : {
                     "speech" : 'You can choose between a word of the day, or a random word',
-                    "repromt" : 'For example, say random word, and you will get its meaning and an example'
+                    "reprompt" : 'For example, say random word, and you will get its meaning and an example'
                     },
   "AMAZON.StopIntent" : {
                     "speech" : 'Bye, keep it real',
-                    "repromt" : ''
+                    "reprompt" : ''
                     },
   "AMAZON.CancelIntent" : {
                     "speech" : 'Respek, knowledge is power',
-                    "repromt" : ''
+                    "reprompt" : ''
                     },
     "RandomWordIntent" : {
-                    "speech" : '{}. Here is the meaning: {}. <break time="1s"/>  Example: {}',
-                    "repromt" : 'Which city again?'
+                    "speech" : 'The word is <break time="1s"/> {}. Here is the meaning: {}. <break time="1s"/>  Example: {}. Do you want to learn another word?',
+                    "reprompt" : 'Which city again?'
                     },
   "WordOfTheDayIntent" : {
-                    "speech" : ' add later',
-                    "repromt" : 'Which date again?'
+                    "speech" : 'The word of the day is <break time="1s"/> {}. Here is the meaning: {}. <break time="1s"/>  Example: {}',
+                    "reprompt" : 'Which date again?'
                     },
   "TEMPLATE" : {
                     "speech" : '',
-                    "repromt" : ''
+                    "reprompt" : ''
                     },
   "AMAZON.FallbackIntent" : {
                     "speech" : 'For real, just ask for a random word',
-                    "repromt" : 'Wicked, want another word?'
+                    "reprompt" : 'Wicked, want another word?'
                     }
 
 } 
