@@ -16,23 +16,23 @@ text_responses = {
                     },
   "AMAZON.HelpIntent" : {
                     "speech" : 'You can choose between a word of the day, or a random word',
-                    "reprompt" : 'For example, say random word, and you will get its meaning and an example'
+                    "reprompt" : 'Just say: Tell me a random word.'
                     },
   "AMAZON.StopIntent" : {
                     "speech" : 'Bye, keep it real',
-                    "reprompt" : ''
+                    "reprompt" : 'Bye'
                     },
   "AMAZON.CancelIntent" : {
                     "speech" : 'Respek, knowledge is power',
-                    "reprompt" : ''
+                    "reprompt" : 'Respek'
                     },
     "RandomWordIntent" : {
-                    "speech" : 'The word is <break time="1s"/> {}. Here is the meaning: {}. <break time="1s"/>  Example: {}. Do you want to learn another word?',
-                    "reprompt" : 'Which city again?'
+                    "speech" : 'The word is <break time="1s"/> {}. Here is the meaning: {}. <break time="500ms"/>  Example: {}. Do you want to learn another word?',
+                    "reprompt" : 'Another word?'
                     },
   "WordOfTheDayIntent" : {
-                    "speech" : 'The word of the day is <break time="1s"/> {}. Here is the meaning: {}. <break time="1s"/>  Example: {}',
-                    "reprompt" : 'Which date again?'
+                    "speech" : 'The word of the day is <break time="1s"/> {}. Here is the meaning: {}. <break time="500mss"/>  Example: {}',
+                    "reprompt" : 'Do you want to hear another word?'
                     },
   "TEMPLATE" : {
                     "speech" : '',
