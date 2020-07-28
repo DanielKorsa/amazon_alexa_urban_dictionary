@@ -39,7 +39,7 @@ skill_name = "urban slang"
 # shows_list_key = "SHOWS LIST"
 help_text = "ADD IT to file"
 
-#-------------------------------
+#------------------------------- Add a question - Did you like this word? to rate them 
 
 sb = SkillBuilder()
 logger = logging.getLogger(__name__)
@@ -65,8 +65,8 @@ def launch_request_handler(handler_input):
     intent_name = intnt_name(handler_input)
     speech = msg(intent_name,'speech')
 
-    handler_input.response_builder.speak(speech).ask(help_text)
-    return handler_input.response_builder.response
+    #handler_input.response_builder.speak(speech).ask(help_text)
+    return handler_input.response_builder.response.ask(help_text)
 
 
 @sb.request_handler(can_handle_func=is_intent_name("AMAZON.HelpIntent"))
