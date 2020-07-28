@@ -26,7 +26,7 @@ text_responses = {
                     "speech" : 'Respek, knowledge is power',
                     "reprompt" : 'Respek'
                     },
-"AMAZON.CancelIntent" : {
+"SessionEndedRequest" : {
                     "speech" : 'Bye',
                     "reprompt" : 'Respek'
                     },
