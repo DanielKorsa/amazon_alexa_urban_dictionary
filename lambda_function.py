@@ -96,7 +96,11 @@ def cancel_and_stop_intent_handler(handler_input):
 def session_ended_request_handler(handler_input):
     """Handler for Session End."""
     # type: (HandlerInput) -> Response
-    return handler_input.response_builder.response
+    intent_name = intnt_name(handler_input)
+    speech = msg(intent_name,'speech')
+    
+    handler_input.response_builder.speak(speech)
+    return handler_input.response_builder.set_should_end_session(True).response
 
 
 

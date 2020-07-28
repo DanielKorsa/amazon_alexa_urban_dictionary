@@ -26,6 +26,10 @@ text_responses = {
                     "speech" : 'Respek, knowledge is power',
                     "reprompt" : 'Respek'
                     },
+"AMAZON.CancelIntent" : {
+                    "speech" : 'Bye',
+                    "reprompt" : 'Respek'
+                    },
     "RandomWordIntent" : {
                     "speech" : 'The word is <break time="1s"/> {}. Here is the meaning: {}. <break time="500ms"/>  Example: {}. Do you want to learn another word?',
                     "reprompt" : 'Another word?'
